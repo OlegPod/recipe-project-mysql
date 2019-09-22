@@ -6,6 +6,7 @@ import com.olehpodolin.recipeproject.services.CategoryService;
 import com.olehpodolin.recipeproject.services.UnitOfMeasureService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
@@ -13,13 +14,14 @@ import java.math.BigDecimal;
 
 @Slf4j
 @Component
-public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
+@Profile("default")
+public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private RecipeRepository recipeRepository;
     private CategoryService categoryService;
     private UnitOfMeasureService unitOfMeasureService;
 
-    public Bootstrap(RecipeRepository recipeRepository, CategoryService categoryService, UnitOfMeasureService unitOfMeasureService) {
+    public RecipeBootstrap(RecipeRepository recipeRepository, CategoryService categoryService, UnitOfMeasureService unitOfMeasureService) {
         this.recipeRepository = recipeRepository;
         this.categoryService = categoryService;
         this.unitOfMeasureService = unitOfMeasureService;
